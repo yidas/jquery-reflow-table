@@ -1,0 +1,78 @@
+/**
+ * yidas/jquery-reflow-table CSS style-sheet
+ * 
+ * @author  Nick Tsai <myintaer@gmail.com>
+ * @since   1.0.0
+ * @see     https://github.com/yidas/jquery-reflow-table
+ */
+
+ /* Mobile Mode: table */
+table.reflow-table {
+  width: 100% !important;
+}
+
+/* Mobile Mode: Hide thead & tfoot */
+.reflow-table.reflow-table-mobile-mode thead, .reflow-table.reflow-table-mobile-mode tfoot {
+  display: none;
+}
+
+/* Mobile Mode: Mobile mode for td */
+.reflow-table.reflow-table-mobile-mode td {
+  overflow: hidden;
+  width: 100%;
+  display: block;
+}
+
+/* Mobile Mode: Dynamically fulfilling pseudo content */
+.reflow-table.reflow-table-mobile-mode td:before {
+  content: attr(data-th);
+}
+
+/* Pseudo pre-style */
+.reflow-table td:before {
+  display: inline-block;
+  font-weight: bold;
+}
+
+/* Width Ratio style-sheet */
+.reflow-table.reflow-table-w-15 td:before {
+  min-width: 15%;
+}
+.reflow-table.reflow-table-w-20 td:before {
+  min-width: 20%;
+}
+.reflow-table.reflow-table-w-25 td:before {
+  min-width: 25%;
+}
+.reflow-table.reflow-table-w-30 td:before {
+  min-width: 30%;
+}
+.reflow-table.reflow-table-w-40 td:before {
+  min-width: 40%;
+}
+.reflow-table.reflow-table-w-50 td:before {
+  min-width: 50%;
+}
+
+/* Width Size style-sheet */
+.reflow-table.reflow-table-xs td:before {
+  min-width: 100px;
+}
+.reflow-table.reflow-table-sm td:before {
+  min-width: 150px;
+}
+.reflow-table.reflow-table-md td:before {
+  min-width: 200px;
+}
+.reflow-table.reflow-table-lg td:before {
+  min-width: 250px;
+}
+
+/**
+ * DataTables library integration
+ */
+/* Fix DataTables Bootstrap 4 border problem for Mobile mode */
+table.dataTable.reflow-table.reflow-table-mobile-mode td, table.dataTable.reflow-table.reflow-table-mobile-mode th {
+  border-right: none;
+  box-sizing: border-box;
+}

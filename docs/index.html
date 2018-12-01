@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>yidas/jquery-reflow-table Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" class="js-site-favicon" href="https://assets-cdn.github.com/favicon.ico">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <!-- Custom styles for this template -->
+  <link href="narrow-jumbotron.css" rel="stylesheet">
+  <link href="dist/css/reflow-table.css" rel="stylesheet">
+  <!-- DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css"/>
+
+  <style>
+  /* Table Reflow Customized CSS for pseudo heads */
+  .reflow-table-customized-style td:before {
+    min-width: 160px !important;
+    text-transform: uppercase;
+  }
+  table {
+    font-size: 10pt;
+  }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header clearfix">
+    <nav>
+      <ul class="nav nav-pills float-right">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Demo <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/yidas/jquery-reflow-table">GitHub</a>
+        </li>
+      </ul>
+    </nav>
+    <h3 class="text-muted">jQuery Reflow Table</h3>
+  </div> <!-- /header -->
+
+  <div class="">
+    <table cellspacing="0" id="table-basic" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+          <th>Lorem</th>
+          <th>Ipsum</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+          <td>Spanning cell</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+          <td>Spanning cell</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+          <td>Spanning cell</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+          <td>Spanning cell</td>
+        </tr>
+        <tr>
+          <td>MSFT <span class="co-name">Microsoft Corporation</span></td>
+          <td>25.50</td>
+          <td>12:27PM</td>
+          <td>0.66 (2.67%)</td>
+          <td>24.84</td>
+          <td>25.37</td>
+          <td>25.50 x 71100</td>
+          <td>25.51 x 17800</td>
+          <td>31.50</td>
+          <td>Non-spanning</td>
+          <td>Non-spanning</td>
+        </tr>
+        <tr>
+          <td>CSCO <span class="co-name">Cisco Systems, Inc.</span></td>
+          <td>18.65</td>
+          <td>12:45PM</td>
+          <td>0.97 (5.49%)</td>
+          <td>17.68</td>
+          <td>18.23</td>
+          <td>18.65 x 10300</td>
+          <td>18.66 x 24000</td>
+          <td>21.12</td>
+          <td>Non-spanning</td>
+          <td>Non-spanning</td>
+        </tr>
+        <tr>
+          <td>YHOO <span class="co-name">Yahoo! Inc.</span></td>
+          <td>15.81</td>
+          <td>12:25PM</td>
+          <td>0.11 (0.67%)</td>
+          <td>15.70</td>
+          <td>15.94</td>
+          <td>15.79 x 6100</td>
+          <td>15.80 x 17000</td>
+          <td>18.16</td>
+          <td>Non-spanning</td>
+          <td>Non-spanning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;">$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-basic&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code --> 
+
+  <hr>
+
+  <a name="toggle-mode"></a>
+  <h5>Toggle Mobile Mode by Button</h5>
+
+  <p>
+    <button type="button" class="btn btn-sm btn-success btn-reflow-toggle-mobile-on">Mobile Mode</button>
+    <button type="button" class="btn btn-sm btn-primary btn-reflow-toggle-mobile-off">Desktop Mode</button>
+    <button type="button" class="btn btn-sm btn-secondary btn-reflow-toggle-mobile-switch">Auto-Switch</button>
+  </p>
+  <div class="">
+    <table cellspacing="0" id="table-toggle" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+        </tr>
+        <tr>
+          <td>MSFT <span class="co-name">Microsoft Corporation</span></td>
+          <td>25.50</td>
+          <td>12:27PM</td>
+          <td>0.66 (2.67%)</td>
+          <td>24.84</td>
+          <td>25.37</td>
+          <td>25.50 x 71100</td>
+          <td>25.51 x 17800</td>
+          <td>31.50</td>
+        </tr>
+        <tr>
+          <td>CSCO <span class="co-name">Cisco Systems, Inc.</span></td>
+          <td>18.65</td>
+          <td>12:45PM</td>
+          <td>0.97 (5.49%)</td>
+          <td>17.68</td>
+          <td>18.23</td>
+          <td>18.65 x 10300</td>
+          <td>18.66 x 24000</td>
+          <td>21.12</td>
+        </tr>
+        <tr>
+          <td>YHOO <span class="co-name">Yahoo! Inc.</span></td>
+          <td>15.81</td>
+          <td>12:25PM</td>
+          <td>0.11 (0.67%)</td>
+          <td>15.70</td>
+          <td>15.94</td>
+          <td>15.79 x 6100</td>
+          <td>15.80 x 17000</td>
+          <td>18.16</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;"><span style="color: #000066; font-weight: bold;">var</span> reflowTable <span style="color: #339933;">=</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-toggle&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  <span style="color: #3366CC;">'autoWidth'</span><span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #006600; font-style: italic;">// Add click listener for mobile-on</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;.btn-reflow-toggle-mobile-on&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">click</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  reflowTable.<span style="color: #660066;">mobileMode</span><span style="color: #009900;">&#40;</span><span style="color: #003366; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #006600; font-style: italic;">// Add click listener for mobile-off</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;.btn-reflow-toggle-mobile-off&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">click</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  reflowTable.<span style="color: #660066;">mobileMode</span><span style="color: #009900;">&#40;</span><span style="color: #003366; font-weight: bold;">false</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #006600; font-style: italic;">// Add click listener for mobile switcher</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;.btn-reflow-toggle-mobile-switch&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">click</span><span style="color: #009900;">&#40;</span><span style="color: #000066; font-weight: bold;">function</span> <span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  reflowTable.<span style="color: #660066;">switchMode</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code --> 
+
+  <hr>
+
+  <a name="moblie-mode-only"></a>
+  <h5>Mobile Mode Only</h5>
+
+  <div class="">
+    <table cellspacing="0" id="table-mobile-only" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;">$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-mobile-only&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  <span style="color: #3366CC;">'autoWidth'</span><span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">mobileMode</span><span style="color: #009900;">&#40;</span><span style="color: #003366; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code -->
+
+  <hr>
+
+  <a name="customized-css"></a>
+  <h5>Customized CSS Styles</h5>
+
+  <div class="">
+    <table cellspacing="0" id="table-customized-css" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;">$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-customized-css&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">addClass</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'reflow-table-customized-style'</span><span style="color: #009900;">&#41;</span>
+.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  <span style="color: #3366CC;">'autoWidth'</span><span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">mobileMode</span><span style="color: #009900;">&#40;</span><span style="color: #003366; font-weight: bold;">true</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code -->
+
+  <hr>
+
+  <a name="events"></a>
+  <h5>Reflow Table with Events</h5> 
+
+  <p>
+    <button type="button" class="btn btn-sm btn-success btn-reflow-events-mobile-on">Mobile Mode</button>
+    <button type="button" class="btn btn-sm btn-primary btn-reflow-events-mobile-off">Desktop Mode</button>
+    <button type="button" class="btn btn-sm btn-secondary btn-reflow-events-mobile-switch">Auto-Switch</button>
+  </p>
+  <div class="">
+    <table cellspacing="0" id="table-events" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;"><span style="color: #006600; font-style: italic;">// Reflow Table with Events</span>
+<span style="color: #000066; font-weight: bold;">var</span> reflowEvents <span style="color: #339933;">=</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-events&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  <span style="color: #006600; font-style: italic;">// 'autoWidth': false,</span>
+  <span style="color: #3366CC;">'eventMobileOn'</span><span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    alert<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'This table is in Mobile mode now'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+  <span style="color: #3366CC;">'eventMobileOff'</span><span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    alert<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'This table is in Desktop mode now'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span><span style="color: #339933;">,</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #006600; font-style: italic;">// Event Binding</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-events&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">on</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'reflow-table.mobile.on'</span><span style="color: #339933;">,</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'This table is in Mobile mode now (Trigger by Event binding)'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+$<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-events&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">on</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'reflow-table.mobile.off'</span><span style="color: #339933;">,</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+  console.<span style="color: #660066;">log</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'This table is in Desktop mode now (Trigger by Event binding)'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code --> 
+
+  <hr>
+
+  <a name="datatables"></a>
+  <h5>DataTables Library Integration</h5>
+
+  <p>
+    <button type="button" class="btn btn-sm btn-success btn-reflow-datatables-mobile-on">Mobile Mode</button>
+    <button type="button" class="btn btn-sm btn-primary btn-reflow-datatables-mobile-off">Desktop Mode</button>
+    <button type="button" class="btn btn-sm btn-secondary btn-reflow-datatables-mobile-switch">Auto-Switch</button>
+  </p>
+  <div class="">
+    <table cellspacing="0" id="table-datatables" class="table table-sm table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Last Trade</th>
+          <th>Trade Time</th>
+          <th>Change</th>
+          <th>Prev Close</th>
+          <th>Open</th>
+          <th>Bid</th>
+          <th>Ask</th>
+          <th>1y Target Est</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+        </tr>
+        <tr>
+          <td>MSFT <span class="co-name">Microsoft Corporation</span></td>
+          <td>25.50</td>
+          <td>12:27PM</td>
+          <td>0.66 (2.67%)</td>
+          <td>24.84</td>
+          <td>25.37</td>
+          <td>25.50 x 71100</td>
+          <td>25.51 x 17800</td>
+          <td>31.50</td>
+        </tr>
+        <tr>
+          <td>CSCO <span class="co-name">Cisco Systems, Inc.</span></td>
+          <td>18.65</td>
+          <td>12:45PM</td>
+          <td>0.97 (5.49%)</td>
+          <td>17.68</td>
+          <td>18.23</td>
+          <td>18.65 x 10300</td>
+          <td>18.66 x 24000</td>
+          <td>21.12</td>
+        </tr>
+        <tr>
+          <td>YHOO <span class="co-name">Yahoo! Inc.</span></td>
+          <td>15.81</td>
+          <td>12:25PM</td>
+          <td>0.11 (0.67%)</td>
+          <td>15.70</td>
+          <td>15.94</td>
+          <td>15.79 x 6100</td>
+          <td>15.80 x 17000</td>
+          <td>18.16</td>
+        </tr>
+        <!-- Repeated -->
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+        </tr>
+        <tr>
+          <td>MSFT <span class="co-name">Microsoft Corporation</span></td>
+          <td>25.50</td>
+          <td>12:27PM</td>
+          <td>0.66 (2.67%)</td>
+          <td>24.84</td>
+          <td>25.37</td>
+          <td>25.50 x 71100</td>
+          <td>25.51 x 17800</td>
+          <td>31.50</td>
+        </tr>
+        <tr>
+          <td>CSCO <span class="co-name">Cisco Systems, Inc.</span></td>
+          <td>18.65</td>
+          <td>12:45PM</td>
+          <td>0.97 (5.49%)</td>
+          <td>17.68</td>
+          <td>18.23</td>
+          <td>18.65 x 10300</td>
+          <td>18.66 x 24000</td>
+          <td>21.12</td>
+        </tr>
+        <tr>
+          <td>YHOO <span class="co-name">Yahoo! Inc.</span></td>
+          <td>15.81</td>
+          <td>12:25PM</td>
+          <td>0.11 (0.67%)</td>
+          <td>15.70</td>
+          <td>15.94</td>
+          <td>15.79 x 6100</td>
+          <td>15.80 x 17000</td>
+          <td>18.16</td>
+        </tr>
+        <!-- Repeated -->
+        <tr>
+          <td>GOOG <span class="co-name">Google Inc.</span></td>
+          <td>597.74</td>
+          <td>12:12PM</td>
+          <td>14.81 (2.54%)</td>
+          <td>582.93</td>
+          <td>597.95</td>
+          <td>597.73 x 100</td>
+          <td>597.91 x 300</td>
+          <td>731.10</td>
+        </tr>
+        <tr>
+          <td>AAPL <span class="co-name">Apple Inc.</span></td>
+          <td>378.94</td>
+          <td>12:22PM</td>
+          <td>5.74 (1.54%)</td>
+          <td>373.20</td>
+          <td>381.02</td>
+          <td>378.92 x 300</td>
+          <td>378.99 x 100</td>
+          <td>505.94</td>
+        </tr>
+        <tr>
+          <td>AMZN <span class="co-name">Amazon.com Inc.</span></td>
+          <td>191.55</td>
+          <td>12:23PM</td>
+          <td>3.16 (1.68%)</td>
+          <td>188.39</td>
+          <td>194.99</td>
+          <td>191.52 x 300</td>
+          <td>191.58 x 100</td>
+          <td>240.32</td>
+        </tr>
+        <tr>
+          <td>ORCL <span class="co-name">Oracle Corporation</span></td>
+          <td>31.15</td>
+          <td>12:44PM</td>
+          <td>1.41 (4.72%)</td>
+          <td>29.74</td>
+          <td>30.67</td>
+          <td>31.14 x 6500</td>
+          <td>31.15 x 3200</td>
+          <td>36.11</td>
+        </tr>
+        <tr>
+          <td>MSFT <span class="co-name">Microsoft Corporation</span></td>
+          <td>25.50</td>
+          <td>12:27PM</td>
+          <td>0.66 (2.67%)</td>
+          <td>24.84</td>
+          <td>25.37</td>
+          <td>25.50 x 71100</td>
+          <td>25.51 x 17800</td>
+          <td>31.50</td>
+        </tr>
+        <tr>
+          <td>CSCO <span class="co-name">Cisco Systems, Inc.</span></td>
+          <td>18.65</td>
+          <td>12:45PM</td>
+          <td>0.97 (5.49%)</td>
+          <td>17.68</td>
+          <td>18.23</td>
+          <td>18.65 x 10300</td>
+          <td>18.66 x 24000</td>
+          <td>21.12</td>
+        </tr>
+        <tr>
+          <td>YHOO <span class="co-name">Yahoo! Inc.</span></td>
+          <td>15.81</td>
+          <td>12:25PM</td>
+          <td>0.11 (0.67%)</td>
+          <td>15.70</td>
+          <td>15.94</td>
+          <td>15.79 x 6100</td>
+          <td>15.80 x 17000</td>
+          <td>18.16</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+  <!-- Example code -->
+  <div class="card">
+    <div class="card-header">Example Code</div>
+    <div class="card-body">
+      <pre class="javascript" style="font-family:monospace;"><span style="color: #006600; font-style: italic;">/**
+ * DataTables integration
+ * 
+ * For this integration, we choose `drawCallback` to implement Reflow Table update. 
+ * DataTables `page.dt` event is triggered too early before draw, while `createdRow` is lacked 
+ * of flexibility.
+ * 
+ * @see https://datatables.net/reference/option/drawCallback 
+ */</span>
+<span style="color: #000066; font-weight: bold;">var</span> datatables <span style="color: #339933;">=</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'#table-datatables'</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">DataTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+&nbsp;
+  <span style="color: #3366CC;">&quot;drawCallback&quot;</span><span style="color: #339933;">:</span> <span style="color: #000066; font-weight: bold;">function</span><span style="color: #009900;">&#40;</span> settings <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+    <span style="color: #006600; font-style: italic;">// Bind a draw callback to re-build row th title for Reflow Table after</span>
+    $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-datatables&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #3366CC;">'update'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+  <span style="color: #009900;">&#125;</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #006600; font-style: italic;">// Initialize Reflow Table (Before or after DataTables are both accepted)</span>
+<span style="color: #000066; font-weight: bold;">var</span> reflowDataTable <span style="color: #339933;">=</span> $<span style="color: #009900;">&#40;</span><span style="color: #3366CC;">&quot;#table-datatables&quot;</span><span style="color: #009900;">&#41;</span>.<span style="color: #660066;">reflowTable</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#123;</span>
+  <span style="color: #3366CC;">'autoWidth'</span><span style="color: #339933;">:</span> <span style="color: #003366; font-weight: bold;">false</span><span style="color: #339933;">,</span>
+<span style="color: #009900;">&#125;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </div>
+  </div>
+  <!-- /Example code --> 
+
+  <footer class="footer">
+    <p>&copy; <a class="" href="https://github.com/yidas/jquery-reflow-table">GitHub yidas/jquery-reflow-table</a></p>
+  </footer>
+
+</div> <!-- /container -->
+
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="dist/js/reflow-table.js"></script>
+<!-- DataTables -->
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.js"></script>
+<script>
+$(function() {
+  
+  $("#table-basic").reflowTable();
+
+  // Toggle Mobile Mode by Button
+  var reflowTable = $("#table-toggle").reflowTable({
+    'autoWidth': false,
+  });
+  // Add click listener for mobile-on
+  $(".btn-reflow-toggle-mobile-on").click(function () {
+    reflowTable.mobileMode(true);
+  });
+  // Add click listener for mobile-off
+  $(".btn-reflow-toggle-mobile-off").click(function () {
+    reflowTable.mobileMode(false);
+  });
+  // Add click listener for mobile switcher
+  $(".btn-reflow-toggle-mobile-switch").click(function () {
+    reflowTable.switchMode();
+  });
+  
+  // Mobile Mode Only
+  $("#table-mobile-only").reflowTable({
+    'autoWidth': false,
+  }).mobileMode(true);
+  
+  // Customized CSS Styles
+  $("#table-customized-css").addClass('reflow-table-customized-style')
+    .reflowTable({
+      'autoWidth': false,
+    }).mobileMode(true);
+
+  // Reflow Table with Events
+  var reflowEvents = $("#table-events").reflowTable({
+    // 'autoWidth': false,
+    'eventMobileOn': function() {
+      alert('This table is in Mobile mode now');
+    },
+    'eventMobileOff': function() {
+      alert('This table is in Desktop mode now');
+    },
+  });
+  // Add click listener for mobile-on
+  $(".btn-reflow-events-mobile-on").click(function () {
+    reflowEvents.mobileMode(true);
+  });
+  // Add click listener for mobile-off
+  $(".btn-reflow-events-mobile-off").click(function () {
+    reflowEvents.mobileMode(false);
+  });
+  // Add click listener for mobile switcher
+  $(".btn-reflow-events-mobile-switch").click(function () {
+    reflowEvents.switchMode()
+  });
+  // Event Binding
+  $("#table-events").on('reflow-table.mobile.on', function() {
+    console.log('This table is in Mobile mode now (Trigger by Event binding)');
+  });
+  $("#table-events").on('reflow-table.mobile.off', function() {
+    console.log('This table is in Desktop mode now (Trigger by Event binding)');
+  });
+
+  // DataTables integration
+  var datatables = $('#table-datatables').DataTable({
+    /**
+     * For this integration, we choose `drawCallback` to implement Reflow Table update. 
+     * DataTables `page.dt` event is triggered too early before draw, while `createdRow` is lacked 
+     * of flexibility.
+     * 
+     * @see https://datatables.net/reference/option/drawCallback 
+     */
+    "drawCallback": function( settings ) {
+      // Bind a draw callback to re-build row th title for Reflow Table after
+      // `update` option is same as calling `update()` from Reflow Table object
+      $("#table-datatables").reflowTable('update');
+    }
+  });
+  // Initialize Reflow Table after DataTables
+  var reflowDataTable = $("#table-datatables").reflowTable({
+    'autoWidth': false,
+  });
+  // Add click listener for mobile-on
+  $(".btn-reflow-datatables-mobile-on").click(function () {
+    reflowDataTable.mobileMode(true);
+  });
+  // Add click listener for mobile-off
+  $(".btn-reflow-datatables-mobile-off").click(function () {
+    reflowDataTable.mobileMode(false);
+  });
+  // Add click listener for mobile switcher
+  $(".btn-reflow-datatables-mobile-switch").click(function () {
+    reflowDataTable.switchMode();
+  });
+
+});
+</script>
+</body>
+</html>

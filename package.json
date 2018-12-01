@@ -1,0 +1,33 @@
+{
+  "name": "jquery-reflow-table",
+  "description": "RWD reflow table switch for mobile UI/UX by collapsing columns",
+  "version": "1.0.0",
+  "keywords": [
+    "RWD",
+    "responsive",
+    "table",
+    "switch-table",
+    "table-reflow",
+    "mobile-ui",
+    "datatables"
+  ],
+  "homepage": "https://github.com/yidas/jquery-reflow-table",
+  "authors": [
+    "Nick Tsai <myintaer@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yidas/jquery-reflow-table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yidas/jquery-reflow-table/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/yidas/js-reflow-table/blob/master/LICENSE"
+  },
+  "main": "dist/js/reflow-table.js",
+  "scripts": {
+    "postinstall": "bower install"
+  }
+}

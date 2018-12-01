@@ -1,0 +1,8 @@
+/**
+ * yidas/jquery-reflow-table CSS style-sheet
+ * 
+ * @author  Nick Tsai <myintaer@gmail.com>
+ * @since   1.0.0
+ * @see     https://github.com/yidas/jquery-reflow-table
+ */
+ table.reflow-table{width:100%!important}.reflow-table.reflow-table-mobile-mode tfoot,.reflow-table.reflow-table-mobile-mode thead{display:none}.reflow-table.reflow-table-mobile-mode td{overflow:hidden;width:100%;display:block}.reflow-table.reflow-table-mobile-mode td:before{content:attr(data-th)}.reflow-table td:before{display:inline-block;font-weight:700}.reflow-table.reflow-table-w-15 td:before{min-width:15%}.reflow-table.reflow-table-w-20 td:before{min-width:20%}.reflow-table.reflow-table-w-25 td:before{min-width:25%}.reflow-table.reflow-table-w-30 td:before{min-width:30%}.reflow-table.reflow-table-w-40 td:before{min-width:40%}.reflow-table.reflow-table-w-50 td:before{min-width:50%}.reflow-table.reflow-table-xs td:before{min-width:100px}.reflow-table.reflow-table-sm td:before{min-width:150px}.reflow-table.reflow-table-md td:before{min-width:200px}.reflow-table.reflow-table-lg td:before{min-width:250px}table.dataTable.reflow-table.reflow-table-mobile-mode td,table.dataTable.reflow-table.reflow-table-mobile-mode th{border-right:none;box-sizing:border-box}
