@@ -71,7 +71,7 @@ INSTALLATION
 bower install jquery-reflow-table
 ```
 
-> You could also download by NPM or directly copy `dist` assets.
+> You could also download by NPM or directly copy [`dist`](https://github.com/yidas/jquery-reflow-table/tree/master/dist) assets. ([Last Release for download](https://github.com/yidas/jquery-reflow-table/releases))
 
 ### Assets include
 

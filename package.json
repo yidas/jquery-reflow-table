@@ -26,8 +26,5 @@
     "type": "MIT",
     "url": "https://github.com/yidas/js-reflow-table/blob/master/LICENSE"
   },
-  "main": "dist/js/reflow-table.js",
-  "scripts": {
-    "postinstall": "bower install"
-  }
+  "main": "dist/js/reflow-table.js"
 }
