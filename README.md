@@ -6,8 +6,8 @@
     <br>
 </p>
 
-[![npm version](https://badge.fury.io/js/jquery-reflow-table.svg)](https://badge.fury.io/js/jquery-reflow-table)
-[![Bower version](https://badge.fury.io/bo/jquery-reflow-table.svg)](https://badge.fury.io/bo/jquery-reflow-table)
+[![npm version](https://img.shields.io/npm/v/jquery-reflow-table.svg)](https://www.npmjs.com/package/jquery-reflow-table)
+[![License](https://img.shields.io/github/license/yidas/jquery-reflow-table.svg)](https://github.com/yidas/jquery-reflow-table/blob/master/LICENSE)
 
 RWD reflow table switch for mobile UI/UX by collapsing columns
 
@@ -71,7 +71,7 @@ INSTALLATION
 bower install jquery-reflow-table
 ```
 
-> You could also download by NPM or directly copy [`dist`](https://github.com/yidas/jquery-reflow-table/tree/master/dist) assets. ([Last Release for download](https://github.com/yidas/jquery-reflow-table/releases))
+> You could also download by [NPM](https://www.npmjs.com/package/jquery-reflow-table) or directly copy [`dist`](https://github.com/yidas/jquery-reflow-table/tree/master/dist) assets. ([Last Release for download](https://github.com/yidas/jquery-reflow-table/releases))
 
 ### Assets include
 
