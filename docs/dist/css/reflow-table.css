@@ -2,7 +2,7 @@
  * yidas/jquery-reflow-table CSS style-sheet
  * 
  * @author  Nick Tsai <myintaer@gmail.com>
- * @since   1.0.0
+ * @since   1.0.2
  * @see     https://github.com/yidas/jquery-reflow-table
  */
 
@@ -18,7 +18,7 @@ table.reflow-table {
 
 /* Mobile Mode: Mobile mode for td */
 .reflow-table.reflow-table-mobile-mode td {
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   display: block;
 }
