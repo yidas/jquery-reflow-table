@@ -1,7 +1,7 @@
 {
   "name": "jquery-reflow-table",
   "description": "RWD reflow table switch for mobile UI/UX by collapsing columns",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "keywords": [
     "RWD",
     "responsive",
